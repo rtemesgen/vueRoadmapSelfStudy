@@ -1,0 +1,41 @@
+# General OS/editor noise
+.DS_Store
+Thumbs.db
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Node / Vite
+roadmap-app/node_modules/
+roadmap-app/dist/
+roadmap-app/.vite/
+roadmap-app/npm-debug.log*
+
+# Local Gradle cache created for this workspace
+roadmap-app/.gradle-user-home/
+
+# Android / Capacitor generated outputs
+roadmap-app/android/.gradle/
+roadmap-app/android/build/
+roadmap-app/android/app/build/
+roadmap-app/android/captures/
+roadmap-app/android/local.properties
+
+# Generated web assets copied into Android
+roadmap-app/android/app/src/main/assets/public/
+roadmap-app/android/app/src/main/assets/capacitor.config.json
+roadmap-app/android/app/src/main/assets/capacitor.plugins.json
+
+# Android signing secrets and release artifacts
+roadmap-app/android/keystore.properties
+roadmap-app/android/*.jks
+roadmap-app/android/*.keystore
+roadmap-app/android/**/*.apk
+roadmap-app/android/**/*.aab
+
+# IDE files
+.idea/
+*.iml
+.vscode/

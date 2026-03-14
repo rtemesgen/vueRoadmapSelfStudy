@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Vue Roadmap</string>
+    <string name="title_activity_main">Vue Roadmap</string>
+    <string name="package_name">com.kgl.vueroadmap</string>
+    <string name="custom_url_scheme">com.kgl.vueroadmap</string>
+</resources>

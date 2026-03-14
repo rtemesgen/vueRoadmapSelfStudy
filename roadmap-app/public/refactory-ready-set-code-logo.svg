@@ -1,0 +1,21 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1024" height="1024" rx="96" fill="#23201D"/>
+  <path d="M0 722C154 656 308 628 462 638C650 650 814 740 1024 708V1024H0V722Z" fill="url(#paint0_linear)"/>
+  <path d="M0 620C130 522 276 478 430 482C642 490 812 604 1024 588V1024H0V620Z" fill="url(#paint1_linear)"/>
+  <path d="M120 450C274 386 418 372 566 382C686 390 804 432 928 474L852 580C720 540 612 520 500 516C350 512 220 544 82 632L120 450Z" fill="#F4C533"/>
+  <path d="M0 322C186 268 354 244 526 252C700 260 850 326 1024 356V556C852 530 706 466 544 456C374 446 196 476 0 564V322Z" fill="#23201D"/>
+  <text x="78" y="132" fill="#F8F2E9" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="700">refactorya</text>
+  <text x="198" y="334" fill="#F8F2E9" font-family="Segoe UI, Arial, sans-serif" font-size="132" font-weight="800">&lt;Ready</text>
+  <text x="282" y="548" fill="#F8F2E9" font-family="Segoe UI, Arial, sans-serif" font-size="132" font-weight="800">Set&gt;</text>
+  <text x="144" y="790" fill="#181818" font-family="Segoe UI, Arial, sans-serif" font-size="176" font-weight="900">CODE</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="512" y1="640" x2="512" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5D23E"/>
+      <stop offset="1" stop-color="#F5A623"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="512" y1="482" x2="512" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFDE59"/>
+      <stop offset="1" stop-color="#F5B234"/>
+    </linearGradient>
+  </defs>
+</svg>

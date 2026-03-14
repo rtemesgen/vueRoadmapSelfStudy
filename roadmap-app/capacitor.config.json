@@ -1,0 +1,6 @@
+{
+  "appId": "com.kgl.vueroadmap",
+  "appName": "Vue Roadmap",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
