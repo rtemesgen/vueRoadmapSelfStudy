@@ -84,11 +84,14 @@ import {
   IonList,
   IonPage
 } from '@ionic/vue'
+import { computed } from 'vue'
 import AppHeader from '../components/AppHeader.vue'
-import { roadmapDays } from '../data/roadmap'
+import { useRoadmapContent } from '../composables/useRoadmapContent'
 import { useSprintStorage } from '../composables/useSprintStorage'
 
 const { progress, hasStartedSprint } = useSprintStorage()
+const { content } = useRoadmapContent()
+const roadmapDays = computed(() => content.value.roadmapDays || [])
 
 function getDayDateLabel(dayNumber) {
   if (!hasStartedSprint.value || !progress.value.sprintStartDate) {

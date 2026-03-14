@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import TodayPage from '../views/TodayPage.vue'
 import GuidePage from '../views/HomePage.vue'
+import AboutPage from '../views/AboutPage.vue'
 import RoadmapPage from '../views/RoadmapPage.vue'
 import ChecklistPage from '../views/ChecklistPage.vue'
 import ProjectPage from '../views/ProjectPage.vue'
@@ -22,6 +23,10 @@ const routes = [
   {
     path: '/guide',
     component: GuidePage
+  },
+  {
+    path: '/about',
+    component: AboutPage
   },
   {
     path: '/checklist',

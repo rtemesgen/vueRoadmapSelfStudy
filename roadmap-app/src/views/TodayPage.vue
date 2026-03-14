@@ -35,10 +35,10 @@
           <section class="section-card">
             <h2>Day 1 preview</h2>
             <p class="output-label">Objective</p>
-            <p>{{ roadmapDays[0].objective }}</p>
+            <p>{{ roadmapDays[0]?.objective }}</p>
             <p class="output-label">What you will study</p>
             <ion-list lines="none">
-              <ion-item v-for="item in roadmapDays[0].studyTopics" :key="item">
+              <ion-item v-for="item in roadmapDays[0]?.studyTopics || []" :key="item">
                 <ion-label>{{ item }}</ion-label>
               </ion-item>
             </ion-list>
@@ -83,6 +83,7 @@
             <p class="eyebrow">Current Focus</p>
             <h1>Day {{ activeDay.day }}: {{ activeDay.title }}</h1>
             <p>{{ activeDayDateLabel }}</p>
+            <p class="meta-copy">{{ dayModeLabel }}</p>
           </section>
 
           <section class="section-card">
@@ -93,8 +94,8 @@
                 <span class="tracker-value">{{ completedDaysCount }}/14</span>
               </div>
               <div class="tracker-box">
-                <span class="tracker-label">Next Open Day</span>
-                <span class="tracker-value">Day {{ nextOpenDay }}</span>
+                <span class="tracker-label">Scheduled Day</span>
+                <span class="tracker-value">Day {{ scheduledDayNumber }}</span>
               </div>
             </div>
             <p class="meta-copy">Sprint started {{ sprintStartLabel }}</p>
@@ -210,10 +211,11 @@ import {
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import AppHeader from '../components/AppHeader.vue'
-import { checkpointGoals, roadmapDays } from '../data/roadmap'
+import { useRoadmapContent } from '../composables/useRoadmapContent'
 import { useSprintStorage } from '../composables/useSprintStorage'
 
 const router = useRouter()
+const { content } = useRoadmapContent()
 const {
   progress,
   hasStartedSprint,
@@ -226,6 +228,7 @@ const {
 
 const isToastOpen = ref(false)
 const toastMessage = ref('')
+const roadmapDays = computed(() => content.value.roadmapDays || [])
 
 const sprintStartDate = computed(() => {
   return progress.value.sprintStartDate ? new Date(`${progress.value.sprintStartDate}T00:00:00`) : null
@@ -259,11 +262,21 @@ const currentSprintDay = computed(() => {
   return diffInDays + 1
 })
 
-const isSprintComplete = computed(() => currentSprintDay.value > roadmapDays.length)
+const scheduledDayNumber = computed(() => {
+  const totalDays = roadmapDays.value.length || 1
+  return Math.min(Math.max(currentSprintDay.value, 1), totalDays)
+})
+
+const actionableDayNumber = computed(() => {
+  const totalDays = roadmapDays.value.length || 1
+  return Math.min(Math.max(nextOpenDay.value, 1), totalDays)
+})
+
+const isSprintComplete = computed(() => completedDaysCount.value >= roadmapDays.value.length)
 
 const activeDay = computed(() => {
-  const dayNumber = Math.min(Math.max(currentSprintDay.value, 1), roadmapDays.length)
-  return roadmapDays.find((entry) => entry.day === dayNumber) || roadmapDays[0]
+  const dayNumber = isSprintComplete.value ? scheduledDayNumber.value : actionableDayNumber.value
+  return roadmapDays.value.find((entry) => entry.day === dayNumber) || roadmapDays.value[0] || {}
 })
 
 const activeDayDateLabel = computed(() => {
@@ -280,6 +293,22 @@ const activeDayDateLabel = computed(() => {
     day: 'numeric',
     year: 'numeric'
   })
+})
+
+const dayModeLabel = computed(() => {
+  if (isSprintComplete.value) {
+    return 'You completed every day in this sprint.'
+  }
+
+  if (actionableDayNumber.value === scheduledDayNumber.value) {
+    return 'You are on the current scheduled lesson.'
+  }
+
+  if (actionableDayNumber.value < scheduledDayNumber.value) {
+    return `You are catching up on Day ${actionableDayNumber.value} while the calendar is at Day ${scheduledDayNumber.value}.`
+  }
+
+  return `You are ahead. The next unfinished lesson is Day ${actionableDayNumber.value}.`
 })
 
 function showToast(message) {
@@ -301,7 +330,17 @@ function handleRestartSprint() {
 function toggleTodayCompletion() {
   const nextValue = !progress.value.dayCompletion[activeDay.value.day]
   toggleDayCompletion(activeDay.value.day, nextValue)
-  showToast(nextValue ? 'Day marked complete.' : 'Day marked as in progress.')
+  if (!nextValue) {
+    showToast('Day marked as in progress.')
+    return
+  }
+
+  const nextDay = Math.min(activeDay.value.day + 1, roadmapDays.value.length)
+  showToast(
+    activeDay.value.day === roadmapDays.value.length
+      ? 'Final day completed. Sprint finished.'
+      : `Day ${activeDay.value.day} complete. Next up: Day ${nextDay}.`
+  )
 }
 
 function goTo(path) {

@@ -67,15 +67,19 @@ import {
   IonPage,
   IonToast
 } from '@ionic/vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import AppHeader from '../components/AppHeader.vue'
-import { checkpointGoals, dailyChecklist, roadmapDays } from '../data/roadmap'
+import { useRoadmapContent } from '../composables/useRoadmapContent'
 import { useSprintStorage } from '../composables/useSprintStorage'
 
 const { progress, toggleCheckpointItem, toggleDayCompletion, toggleRoutineItem } =
   useSprintStorage()
+const { content } = useRoadmapContent()
 const isToastOpen = ref(false)
 const toastMessage = ref('')
+const checkpointGoals = computed(() => content.value.checkpointGoals || [])
+const dailyChecklist = computed(() => content.value.dailyChecklist || [])
+const roadmapDays = computed(() => content.value.roadmapDays || [])
 
 function showToast(message) {
   toastMessage.value = message

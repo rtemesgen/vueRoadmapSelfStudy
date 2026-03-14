@@ -124,12 +124,96 @@
             when you want to see what kind of app you are building toward.
           </p>
         </section>
+
+        <section class="section-card">
+          <h2>Startup guide</h2>
+          <p>Show the welcome guide each time the app opens until you feel comfortable using it.</p>
+          <div class="guide-checkbox-row">
+            <ion-checkbox
+              :checked="progress.showGuideOnLaunch"
+              @ionChange="setShowGuideOnLaunch($event.detail.checked)"
+            />
+            <ion-label>Show the welcome guide when the app starts</ion-label>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <div class="section-title-row">
+            <div>
+              <h2>Content updates</h2>
+              <p class="meta-copy">
+                The app can pull newer roadmap text from a hosted JSON file and fall back to the
+                built-in content when you are offline.
+              </p>
+            </div>
+            <ion-badge :color="source === 'remote' ? 'success' : 'warning'">
+              {{ source === 'remote' ? 'Remote' : 'Built in' }}
+            </ion-badge>
+          </div>
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Last checked: {{ formatDate(lastCheckedAt) }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Last content update: {{ formatDate(lastUpdatedAt) }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Current source: {{ source === 'remote' ? 'Hosted update file' : 'Bundled fallback' }}</ion-label>
+            </ion-item>
+          </ion-list>
+          <p v-if="refreshError" class="meta-copy">Update note: {{ refreshError }}</p>
+          <ion-button expand="block" :disabled="isRefreshing" @click="handleRefreshContent">
+            {{ isRefreshing ? 'Checking For Updates...' : 'Check For Content Updates' }}
+          </ion-button>
+        </section>
+
+        <section class="section-card">
+          <h2>Sharing advice</h2>
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Use the signed release APK when sharing, not the debug APK</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Google Drive, Dropbox, GitHub Releases, or a website usually feel safer than WhatsApp</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Install warnings usually happen because the APK is sideloaded, not because the app asks for risky permissions</ion-label>
+            </ion-item>
+          </ion-list>
+        </section>
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import { IonContent, IonItem, IonLabel, IonList, IonPage } from '@ionic/vue'
+import {
+  IonBadge,
+  IonButton,
+  IonCheckbox,
+  IonContent,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonPage
+} from '@ionic/vue'
 import AppHeader from '../components/AppHeader.vue'
+import { useRoadmapContent } from '../composables/useRoadmapContent'
+import { useSprintStorage } from '../composables/useSprintStorage'
+
+const { progress, setShowGuideOnLaunch } = useSprintStorage()
+const { source, isRefreshing, lastCheckedAt, lastUpdatedAt, refreshError, refreshContent } =
+  useRoadmapContent()
+
+function formatDate(value) {
+  if (!value) {
+    return 'Not checked yet'
+  }
+
+  return new Date(value).toLocaleString()
+}
+
+function handleRefreshContent() {
+  refreshContent({ force: true })
+}
 </script>

@@ -49,6 +49,10 @@ import {
   IonList,
   IonPage
 } from '@ionic/vue'
+import { computed } from 'vue'
 import AppHeader from '../components/AppHeader.vue'
-import { projectBrief } from '../data/roadmap'
+import { useRoadmapContent } from '../composables/useRoadmapContent'
+
+const { content } = useRoadmapContent()
+const projectBrief = computed(() => content.value.projectBrief || { screens: [], stack: [], buildOrder: [] })
 </script>

@@ -1,0 +1,39 @@
+1
+00:00:00,000 --> 00:00:07,720
+Hello, this is Vue Roadmap, a mobile app designed to guide you through a 14-day Vue 3 self-study sprint.
+
+2
+00:00:07,720 --> 00:00:14,260
+After downloading the release APK, install the app on your Android phone and open it.
+
+3
+00:00:14,260 --> 00:00:24,070
+When the app opens, start in the Today tab. Tap Start Sprint Today. This becomes your main learning screen for the whole sprint.
+
+4
+00:00:24,070 --> 00:00:32,600
+Each day shows your objective, what you need to know, what to study, what to research, what to build, and how to know you are on track.
+
+5
+00:00:32,600 --> 00:00:40,820
+If you want to see the full journey, open the Roadmap tab. It contains all 14 days with detailed guidance.
+
+6
+00:00:40,820 --> 00:00:47,030
+Use Checklist to mark your daily routine, checkpoint progress, and completed days.
+
+7
+00:00:47,030 --> 00:00:55,470
+If you forget how the app works, open the Guide tab. It explains what each screen does and how to move through the sprint.
+
+8
+00:00:55,470 --> 00:01:02,760
+Use Tracker to record your confidence for each day and save short notes about what felt easy or difficult.
+
+9
+00:01:02,760 --> 00:01:08,700
+As you move through the sprint, the app also points you toward the mini project you are building.
+
+10
+00:01:08,700 --> 00:01:18,790
+The best way to use Vue Roadmap is simple: open Today, follow the guidance, build the feature, check your progress, and write a short note before you stop.

@@ -103,15 +103,18 @@ import {
   IonTextarea,
   IonToast
 } from '@ionic/vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import AppHeader from '../components/AppHeader.vue'
-import { roadmapDays, trackerPrompts } from '../data/roadmap'
+import { useRoadmapContent } from '../composables/useRoadmapContent'
 import { useSprintStorage } from '../composables/useSprintStorage'
 
 const { progress, resetProgress, setConfidence, setNote } = useSprintStorage()
+const { content } = useRoadmapContent()
 const isResetAlertOpen = ref(false)
 const isToastOpen = ref(false)
 const toastMessage = ref('')
+const roadmapDays = computed(() => content.value.roadmapDays || [])
+const trackerPrompts = computed(() => content.value.trackerPrompts || [])
 
 function showToast(message) {
   toastMessage.value = message

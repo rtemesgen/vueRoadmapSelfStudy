@@ -6,6 +6,7 @@ Thumbs.db
 # Python cache
 __pycache__/
 *.pyc
+comtypes_cache/
 
 # Node / Vite
 roadmap-app/node_modules/
@@ -34,6 +35,12 @@ roadmap-app/android/*.jks
 roadmap-app/android/*.keystore
 roadmap-app/android/**/*.apk
 roadmap-app/android/**/*.aab
+
+# Local generated media and temporary render files
+video_build/
+video-test.mp3
+video-test.wav
+*TEMP_MPY*
 
 # IDE files
 .idea/

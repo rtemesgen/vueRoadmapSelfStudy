@@ -6,6 +6,7 @@ const STORAGE_KEY = 'vue-roadmap-sprint-progress'
 function createDefaultProgress() {
   return {
     sprintStartDate: '',
+    showGuideOnLaunch: true,
     dailyRoutine: {},
     checkpointGoals: {},
     dayCompletion: Object.fromEntries(roadmapDays.map((day) => [day.day, false])),
@@ -30,6 +31,7 @@ function loadProgress() {
       ...createDefaultProgress(),
       ...parsed,
       sprintStartDate: parsed.sprintStartDate || '',
+      showGuideOnLaunch: parsed.showGuideOnLaunch !== false,
       dayCompletion: {
         ...createDefaultProgress().dayCompletion,
         ...(parsed.dayCompletion || {})
@@ -103,6 +105,10 @@ export function useSprintStorage() {
     progress.value = createDefaultProgress()
   }
 
+  function setShowGuideOnLaunch(value) {
+    progress.value.showGuideOnLaunch = Boolean(value)
+  }
+
   return {
     progress,
     hasStartedSprint,
@@ -113,6 +119,7 @@ export function useSprintStorage() {
     toggleDayCompletion,
     setConfidence,
     setNote,
+    setShowGuideOnLaunch,
     startSprint,
     resetProgress
   }

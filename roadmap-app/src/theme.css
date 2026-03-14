@@ -54,6 +54,11 @@ ion-content::part(background) {
   padding: 18px 16px 96px;
 }
 
+.onboarding-screen {
+  min-height: 100%;
+  padding-top: 28px;
+}
+
 .screen::before {
   content: "";
   position: absolute;
@@ -147,6 +152,13 @@ ion-content::part(background) {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.guide-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
 }
 
 .primary-actions {
@@ -243,6 +255,7 @@ ion-tab-bar {
 ion-tab-button {
   --ripple-color: rgba(11, 110, 79, 0.12);
   min-height: 62px;
+  font-size: 0.7rem;
 }
 
 ion-list {
