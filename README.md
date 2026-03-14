@@ -46,3 +46,5 @@ roadmap-app/android/app/build/outputs/apk/release/app-release.apk
 - [INSTALL_AND_USE.md](c:\Users\HAVEN\Desktop\kgl ppt\INSTALL_AND_USE.md)
 - [WALKTHROUGH_SCRIPT.md](c:\Users\HAVEN\Desktop\kgl ppt\WALKTHROUGH_SCRIPT.md)
 - [walkthrough-captions.srt](c:\Users\HAVEN\Desktop\kgl ppt\walkthrough-captions.srt)
+- [SORA_VIDEO_PRODUCTION_PLAN.md](c:\Users\HAVEN\Desktop\kgl ppt\SORA_VIDEO_PRODUCTION_PLAN.md)
+- [VIDEO_SHOT_LIST.md](c:\Users\HAVEN\Desktop\kgl ppt\VIDEO_SHOT_LIST.md)
