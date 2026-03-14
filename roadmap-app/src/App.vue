@@ -16,9 +16,9 @@
           <ion-icon :icon="checkmarkDoneOutline" />
           <ion-label>Checklist</ion-label>
         </ion-tab-button>
-        <ion-tab-button tab="project" href="/project">
-          <ion-icon :icon="briefcaseOutline" />
-          <ion-label>Project</ion-label>
+        <ion-tab-button tab="guide" href="/guide">
+          <ion-icon :icon="informationCircleOutline" />
+          <ion-label>Guide</ion-label>
         </ion-tab-button>
         <ion-tab-button tab="tracker" href="/tracker">
           <ion-icon :icon="statsChartOutline" />
@@ -40,8 +40,8 @@ import {
   IonTabs
 } from '@ionic/vue'
 import {
-  briefcaseOutline,
   checkmarkDoneOutline,
+  informationCircleOutline,
   mapOutline,
   statsChartOutline,
   todayOutline
